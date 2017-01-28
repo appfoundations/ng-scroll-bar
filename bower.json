@@ -1,0 +1,31 @@
+{
+  "name": "ng-scroll-bar",
+  "description": "Angular Scrollbar Directive",
+  "version": "0.1.0",
+  "main": [
+    "./dist/ng-scroll-bar.js"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "date picker",
+    "angular"
+  ],
+  "authors": [
+    "roel b <roel.mail73@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/appfoundations",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "MutationObserver-shim": "^0.3.2",
+    "angular": "1.4.14"
+  }
+}

@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <title>AngularJS Material Date Picker</title>
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../ng-scroll-bar.css" />
+</head>
+
+<body ng-controller="MainCtrl as ctrl">
+    <div>
+        <button ng-click="ctrl.addItem()">Add item on List</button>
+        <h5>Vertical Scroll (Supported)</h5>
+        <div ng-scroll-bar style="height: 200px;background: #AAA; width: 200px; overflow: auto;">
+            <ol>
+                <li class="relative-div" ng-repeat="item in ctrl.items">
+                    {{item.text}}
+                    <div class="absolute-div"></div>
+                </li>
+            </ol>
+        </div>
+        <h5>Vertical Scroll (Note Supported yet)</h5>
+        <div ng-scroll-bar style="height: 200px;background: #AAA; width: 200px; overflow: auto;">
+            <div class="relative-div" ng-repeat="item in ctrl.items" style="white-space: nowrap">
+                {{item.text}}
+                <div class="absolute-div"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <!-- Your application bootstrap  -->
+    <script src="../ng-scroll-bar.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

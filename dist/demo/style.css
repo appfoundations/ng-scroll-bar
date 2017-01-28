@@ -1,0 +1,15 @@
+.bg-gray {
+    background: #EEE;
+}
+.relative-div {
+    position: relative;
+}
+.absolute-div {
+    position: absolute; 
+    z-index: 1;
+    height: 2px;
+    right: 0;
+    left: 0;
+    top: 0;
+    background: #FFF;
+}
