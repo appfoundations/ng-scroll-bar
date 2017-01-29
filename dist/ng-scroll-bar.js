@@ -52,8 +52,10 @@
 
       element.on('scroll', update);
       element.on('mousewheel', mousewheel);
-      element.on('DOMMouseScroll', mousewheel);
-      element.on('mousedown', mousedown);
+      thumbY.on('DOMMouseScroll', mousewheel);
+      thumbY.on('mousedown', mousedown);
+      thumbX.on('DOMMouseScroll', mousewheel);
+      thumbX.on('mousedown', mousedown);
       w.on('resize', update);
 
       // have the observer observe foo for changes in children
@@ -63,8 +65,10 @@
         listener.disconect();
         element.off('scroll', update);
         element.off('mousewheel', mousewheel);
-        element.off('DOMMouseScroll', mousewheel);
-        element.off('mousedown', mousedown);
+        thumbY.off('DOMMouseScroll', mousewheel);
+        thumbY.off('mousedown', mousedown);
+        thumbX.off('DOMMouseScroll', mousewheel);
+        thumbX.off('mousedown', mousedown);
         w.off('mouseup', mouseup);
         w.off('mousemove', mousemove);
         w.off('resize', update);
