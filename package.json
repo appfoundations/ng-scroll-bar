@@ -1,6 +1,6 @@
 {
   "name": "ng-scroll-bar",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Angular Scroll Bar Directive",
   "main": "./index.js",
   "dependencies": {

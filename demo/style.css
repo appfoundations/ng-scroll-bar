@@ -6,10 +6,23 @@
 }
 .absolute-div {
     position: absolute; 
-    z-index: 1;
     height: 2px;
     right: 0;
     left: 0;
     top: 0;
     background: #FFF;
+}
+li {
+    padding: 2px 4px;
+}
+li:nth-child(2n+1){
+    background: rgba(255, 255, 255, 0.5);
+}
+.collapsible {
+    padding: 0;
+}
+.collapsible p {
+    margin: 0;
+    padding: 2px 4px;
+    background: #EEE;
 }

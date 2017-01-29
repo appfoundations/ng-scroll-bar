@@ -12,25 +12,88 @@
 
 <body ng-controller="MainCtrl as ctrl">
     <div>
-        <button ng-click="ctrl.addItem()">Add item on List</button>
-        <h5>Vertical Scroll (Supported)</h5>
-        <div ng-scroll-bar style="height: 200px;background: #AAA; width: 200px; overflow: auto;">
-            <ol>
-                <li class="relative-div" ng-repeat="item in ctrl.items">
-                    {{item.text}}
-                    <div class="absolute-div"></div>
-                </li>
-            </ol>
-        </div>
-        <h5>Vertical Scroll (Note Supported yet)</h5>
-        <div ng-scroll-bar style="height: 200px;background: #AAA; width: 200px; overflow: auto;">
-            <div class="relative-div" ng-repeat="item in ctrl.items" style="white-space: nowrap">
-                {{item.text}}
-                <div class="absolute-div"></div>
+        <div>
+            <div style="float: left; margin: 20px;">
+                <h5 style="margin-bottom: 4px">Vertical Scroll</h5>
+                <button ng-click="ctrl.addItem()">Add item on List</button>
+                <div ng-scroll-bar style="height: 200px;background: #AAA; width: 200px; overflow: auto;">
+                    <ol style="border: <1p></1p>x solid red">
+                        <li class="relative-div" ng-repeat="item in ctrl.items">
+                            {{item.text}}
+                            <div class="absolute-div"></div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div style="float: left; margin: 20px;">
+                <h5>Vertical Scroll</h5>
+                <div ng-scroll-bar style="height: 200px;background: #CCC; width: 200px; overflow: auto; padding: 0 10px 0 0;">
+                    <ol contenteditable="">
+                        <li>Content Editable</li>
+                        <li>Click list and type</li>
+                        <li>Then press Enter to Add Item</li>
+                    </ol>
+                </div>
+            </div>
+            <div style="float: left; margin: 20px;">
+                <h5>Collapsible</h5>
+                <div ng-scroll-bar style="height: 200px;background: #CCC; width: 200px; overflow: auto;">
+                    <div class="collapsible">
+                        <p>
+                            <button ng-click="ctrl.hidden = !ctrl.hidden">Toggle Content</button>
+                        </p>
+                        <p ng-hide="ctrl.hidden">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
+    <div  style="clear: both">
+        <div style="margin: 20px; float: left">
+            <h5>Vertical Scroll</h5>
+            <div ng-scroll-bar style="height: 200px;background: #EEE; width: 440px; overflow: auto;">
+                <div class="relative-div" ng-repeat="item in ctrl.items" style="white-space: nowrap">
+                    {{item.text}}
+                    <div class="absolute-div"></div>
+                </div>
+            </div>
+        </div> 
+        <div style="float: left; margin: 20px;">
+            <h5>Nested Scroll, With Padding</h5>
+            <div ng-scroll-bar style="height: 200px;background: #CCC; width: 200px; overflow: auto; padding-right: 8px;">
+                <div ng-scroll-bar style="height: 100px;background: #CCC; width: 200px; overflow: auto;">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+                <div ng-scroll-bar style="height: 100px;background: #EEE; width: 200px; overflow: auto;">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+                <div ng-scroll-bar style="height: 100px;background: #DDD; width: 200px; overflow: auto;">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div>
+            <div ng-scroll-bar style="position: fixed; right: 0; top: 0; bottom: 0; background: #000; color: #FFF; width: 200px; overflow: auto;">
+                <h5 style="margin: 0; padding: 10px;">Auto Heigt, Resize your Browser (Supported)</h5>
+                <ol>
+                    <li class="relative-div" ng-repeat="item in ctrl.items">
+                        {{item.text}}
+                        <div class="absolute-div"></div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
     <!-- Angular Material requires Angular.js Libraries -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 

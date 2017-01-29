@@ -1,15 +1,14 @@
 [ng-scroll-bar] {
   position: relative;
+  overflow: hidden !important;
   /**
   * Scrollbars
   */ }
-  [ng-scroll-bar]::scrollbar {
-    width: 0; }
-  [ng-scroll-bar]::-webkit-scrollbar {
-    width: 0; }
-  [ng-scroll-bar]:hover .ng-scroll-bar-thumb {
+  [ng-scroll-bar]:hover .ng-scroll-bar-thumb-x,
+  [ng-scroll-bar]:hover .ng-scroll-bar-thumb-y {
     opacity: 1; }
-  [ng-scroll-bar] .ng-scroll-bar-thumb {
+  [ng-scroll-bar] .ng-scroll-bar-thumb-x,
+  [ng-scroll-bar] .ng-scroll-bar-thumb-y {
     -webkit-transition: opacity ease-out 300ms;
     transition: opacity ease-out 300ms;
     opacity: 0;
@@ -18,10 +17,15 @@
     pointer-events: none;
     content: '';
     width: 8px;
-    height: 100px;
+    height: 8px;
     background: rgba(100, 100, 100, 0.5);
     right: 0;
     border-radius: 4px;
-    z-index: 1; }
-    [ng-scroll-bar] .ng-scroll-bar-thumb:active, [ng-scroll-bar] .ng-scroll-bar-thumb:focus {
+    z-index: 0; }
+    [ng-scroll-bar] .ng-scroll-bar-thumb-x:active, [ng-scroll-bar] .ng-scroll-bar-thumb-x:focus,
+    [ng-scroll-bar] .ng-scroll-bar-thumb-y:active,
+    [ng-scroll-bar] .ng-scroll-bar-thumb-y:focus {
       opacity: 1; }
+  [ng-scroll-bar] .ng-scroll-bar-thumb-x {
+    right: auto;
+    bottom: 0; }
