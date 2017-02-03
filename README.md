@@ -32,10 +32,9 @@ clone repository and run gulp for demo http://localhost:8000
 
 ### Todos
 
- - IE Support
- - Moz Support
- - Horizontal Scrollbar
  - Enhancements
+ - Optimizations
+ - Customizable
 
 License
 ----
