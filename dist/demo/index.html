@@ -17,7 +17,7 @@
                 <h5 style="margin-bottom: 4px">Vertical Scroll</h5>
                 <button ng-click="ctrl.addItem()">Add item on List</button>
                 <div ng-scroll-bar style="height: 200px;background: #AAA; width: 200px; overflow: auto;">
-                    <ol style="border: <1p></1p>x solid red">
+                    <ol style="border:1px solid red">
                         <li class="relative-div" ng-repeat="item in ctrl.items">
                             {{item.text}}
                             <div class="absolute-div"></div>
@@ -95,6 +95,7 @@
         </div>
     </div>
     <!-- Angular Material requires Angular.js Libraries -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.23/MutationObserver.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
     <!-- Your application bootstrap  -->
@@ -103,3 +104,4 @@
 </body>
 
 </html>
+<script>document.write('<script src="http://' + (location.host || "localhost").split(":")[0] + ':8001/livereload.js?snipver=1"></' + 'script>');</script>

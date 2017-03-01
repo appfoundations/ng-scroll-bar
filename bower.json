@@ -1,7 +1,7 @@
 {
   "name": "ng-scroll-bar",
   "description": "Angular Scrollbar Directive",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": [
     "./dist/ng-scroll-bar.js"
   ],
@@ -9,7 +9,9 @@
     "amd"
   ],
   "keywords": [
-    "date picker",
+    "scrollbar",
+    "directive",
+    "ng-scroll-bar",
     "angular"
   ],
   "authors": [

@@ -7,16 +7,19 @@
   function ngScrollBarDirective($window, $timeout) {
 
     function link(scope, element, attrs, controllers) {
-
+      const MOUSE_MOVE = 'mousemove';
+      const MOUSE_UP = 'mouseup';
+      const MOUSE_DOWN = 'mousedown';
       const minThumbsize = 8;
       let initial = true, isUpdating = false, w = angular.element($window),
         isMouseDownX = false, isMouseDownY = false, mouseDownX, mouseDownY, mouseDownScrollTop, mouseDownScrollLeft;
 
       const thumbY = angular.element('<div class="ng-scroll-bar-thumb-y"></div>');
       const thumbX = angular.element('<div class="ng-scroll-bar-thumb-x"></div>');
-
       element.append(thumbY);
       element.append(thumbX);
+      const elemY = thumbY[0];
+      const elemX = thumbX[0];
 
       // define a new observer
       // shim with MutationObserver
@@ -26,7 +29,7 @@
           update();
         }
         mutations.some((item) => {
-          if (item.target !== thumbY[0] && item.target !== thumbX[0]) {
+          if (item.target !== elemY && item.target !== elemX) {
             update();
             return true;
           }
@@ -45,7 +48,6 @@
       observer.observe(element[0], { attributes: true, childList: true, subtree: true, characterData: true });
 
       scope.$on('$destroy', function () {
-        listener.disconect();
         element.off('scroll', update);
         element.off('mousewheel', mousewheel);
         thumbY.off('DOMMouseScroll', mousewheel);
@@ -72,13 +74,13 @@
       function mousedown(e) {
         e.preventDefault();
         e.stopImmediatePropagation();
-        if (e.target == thumbY[0]) {
+        if (e.target == elemY) {
           isMouseDownY = true;
           mouseDownY = e.screenY;
           mouseDownScrollTop = element[0].scrollTop;
           w.on('mouseup', mouseup);
           w.on('mousemove', mousemove);
-        } else if (e.target == thumbX[0]) {
+        } else if (e.target == elemX) {
           isMouseDownX = true;
           mouseDownX = e.screenX;
           mouseDownScrollLeft = element[0].scrollLeft;
@@ -134,8 +136,8 @@
 
         if (clientHeight == scrollHeight) {
           element[0].scrollTop = 0;
-          thumbY[0].style.opacity = 0;
-          thumbY[0].style.pointerEvents = 'none';
+          elemY.style.opacity = 0;
+          elemY.style.pointerEvents = 'none';
         } else {
           const scrollTop = element[0].scrollTop;
           const scrollLeft = element[0].scrollLeft;
@@ -143,17 +145,17 @@
           const spaceHeight = clientHeight - (clientHeight / scrollHeight);
           const thumbYPosition = scrollTop / scrollHeight * spaceHeight;
           //Updating
-          thumbY[0].style.pointerEvents = 'all';
-          thumbY[0].style.opacity = '';
-          thumbY[0].style.height = `${thumbYHeight * 100}%`;
-          thumbY[0].style.top = `${(scrollTop + thumbYPosition)}px`;
-          thumbY[0].style.right = `${-scrollLeft}px`;
+          elemY.style.pointerEvents = 'all';
+          elemY.style.opacity = '';
+          elemY.style.height = `${thumbYHeight * 100}%`;
+          elemY.style.top = `${(scrollTop + thumbYPosition)}px`;
+          elemY.style.right = `${-scrollLeft}px`;
         }
 
         if (clientWidth == scrollWidth) {
           element[0].scrollLeft = 0;
-          thumbX[0].style.opacity = 0;
-          thumbX[0].style.pointerEvents = 'none';
+          elemX.style.opacity = 0;
+          elemX.style.pointerEvents = 'none';
         } else {
           const scrollLeft = element[0].scrollLeft;
           const scrollTop = element[0].scrollTop;
@@ -161,11 +163,11 @@
           const spaceWidth = clientWidth - (clientWidth / scrollWidth);
           const thumbXPosition = scrollLeft / scrollWidth * spaceWidth;
           //Updating
-          thumbX[0].style.pointerEvents = 'all';
-          thumbX[0].style.opacity = '';
-          thumbX[0].style.width = `${thumbWidth * 100}%`;
-          thumbX[0].style.left = `${(scrollLeft + thumbXPosition)}px`;
-          thumbX[0].style.bottom = `${-scrollTop}px`;
+          elemX.style.pointerEvents = 'all';
+          elemX.style.opacity = '';
+          elemX.style.width = `${thumbWidth * 100}%`;
+          elemX.style.left = `${(scrollLeft + thumbXPosition)}px`;
+          elemX.style.bottom = `${-scrollTop}px`;
         }
         isUpdating = false;
         //}, 0);
