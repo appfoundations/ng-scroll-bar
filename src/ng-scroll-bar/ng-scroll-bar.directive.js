@@ -36,11 +36,11 @@
         });
       });
 
+      const mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel" //FF doesn't recognize mousewheel as of FF3.x
+
       element.on('scroll', update);
-      element.on('mousewheel', mousewheel);
-      thumbY.on('DOMMouseScroll', mousewheel);
+      element.on(mousewheelevt, mousewheel);
       thumbY.on('mousedown', mousedown);
-      thumbX.on('DOMMouseScroll', mousewheel);
       thumbX.on('mousedown', mousedown);
       w.on('resize', update);
 
@@ -49,10 +49,8 @@
 
       scope.$on('$destroy', function () {
         element.off('scroll', update);
-        element.off('mousewheel', mousewheel);
-        thumbY.off('DOMMouseScroll', mousewheel);
+        element.off(mousewheelevt, mousewheel);
         thumbY.off('mousedown', mousedown);
-        thumbX.off('DOMMouseScroll', mousewheel);
         thumbX.off('mousedown', mousedown);
         w.off('mouseup', mouseup);
         w.off('mousemove', mousemove);
@@ -62,12 +60,14 @@
       $timeout(update, 100);
 
       function mousewheel(e) {
-        if (event.deltaY) {
+        const evt = window.event || e; //equalize event object
+        const delta = (evt.detail ? evt.detail * -240 : evt.wheelDelta) < 1  ? 120 : -120; //delta returns +120 when wheel is scrolled up, -120 when scrolled down
+        if (delta) {
           e.preventDefault();
           e.stopImmediatePropagation();
           const scrollHeight = element[0].scrollHeight;
           const scrollTop = element[0].scrollTop;
-          element[0].scrollTop = Math.min(scrollHeight, scrollTop + event.deltaY);
+          element[0].scrollTop = Math.min(scrollHeight, scrollTop + delta);
         }
       }
 
@@ -183,4 +183,4 @@
 
   }
 
-} ())
+}())
