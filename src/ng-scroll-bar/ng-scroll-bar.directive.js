@@ -60,6 +60,11 @@
       $timeout(update, 100);
 
       function mousewheel(e) {
+        //Check do we have vertical scroll or not, if no, we should be able to use main page scroll
+        if (element[0].clientHeight === element[0].scrollHeight) {
+          return;
+        }
+
         const evt = window.event || e; //equalize event object
         const delta = (evt.detail ? evt.detail * -240 : evt.wheelDelta) < 1  ? 120 : -120; //delta returns +120 when wheel is scrolled up, -120 when scrolled down
         if (delta) {
