@@ -1,6 +1,6 @@
 {
   "name": "ng-scroll-bar",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Angular Scroll Bar Directive",
   "main": "./index.js",
   "dependencies": {
@@ -36,7 +36,8 @@
     "streamqueue": "^1.1.1"
   },
   "scripts": {
-    "start": "gulp serve"
+    "start": "gulp serve",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
