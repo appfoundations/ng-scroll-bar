@@ -57,9 +57,9 @@
 
       element.on('scroll', update);
       element.on(mousewheelevt, mousewheel);
-      element.on('touchstart', mousedown);
-      thumbY.on('touchstart', mousedown);
-      thumbX.on('touchstart', mousedown);
+      element.on('touchstart', touchstart);
+      thumbY.on('touchstart', touchstart);
+      thumbX.on('touchstart', touchstart);
       thumbY.on('mousedown', mousedown);
       thumbX.on('mousedown', mousedown);
       w.on('resize', update);
@@ -96,6 +96,20 @@
         }
       }
 
+      function touchstart(e) {
+        e.stopImmediatePropagation();
+        // Only do scroll for single touch event
+        if (e.type === "touchstart" && e.touches.length === 1) {
+          isMouseDownY = true;
+          mouseDownY = e.touches[0].screenY;
+          mouseDownScrollTop = element[0].scrollTop;
+          isMouseDownX = true;
+          mouseDownX = e.touches[0].screenX;
+          mouseDownScrollLeft = element[0].scrollLeft;
+          w.on('touchend', mouseup);
+          w.on('touchmove', mousemove);
+        }
+      }
       function mousedown(e) {
         e.preventDefault();
         e.stopImmediatePropagation();
