@@ -40,6 +40,9 @@
 
       element.on('scroll', update);
       element.on(mousewheelevt, mousewheel);
+	  element.on('touchstart', mousedown);
+	  thumbY.on('touchstart', mousedown);
+	  thumbX.on('touchstart', mousedown);
       thumbY.on('mousedown', mousedown);
       thumbX.on('mousedown', mousedown);
       w.on('resize', update);
@@ -92,6 +95,18 @@
           w.on('mouseup', mouseup);
           w.on('mousemove', mousemove);
         }
+        // Only do scroll for single touch event
+		else if(e.type === "touchstart" && e.touches.length === 1) {
+			e.stopImmediatePropagation();
+			isMouseDownY = true;
+			mouseDownY = e.touches[0].screenY;
+			mouseDownScrollTop = element[0].scrollTop;
+			isMouseDownX = true;
+			mouseDownX = e.touches[0].screenX;
+			mouseDownScrollLeft = element[0].scrollLeft;
+			w.on('touchend', mouseup);
+			w.on('touchmove', mousemove);
+		}
       }
 
       function mouseup() {
@@ -99,15 +114,24 @@
         isMouseDownY = false;
         w.off('mouseup', mouseup);
         w.off('mousemove', mousemove);
+		  w.off('touchend', mouseup);
+		  w.off('touchmove', mousemove);
       }
 
       function mousemove(e) {
         e.preventDefault();
+		  const isTouch = e.type === "touchmove";
+		  // Invert scroll for touch events
+		  const displacementMultiplier = isTouch ? -1 :1;
+		  if(isTouch){
+			  e.screenX = e.touches[0].screenX;
+			  e.screenY = e.touches[0].screenY;
+		  }
         if (isMouseDownY) {
           const clientHeight = element[0].clientHeight;
           const scrollHeight = element[0].scrollHeight;
-          const displacementY = e.screenY - mouseDownY;
-          const spaceHeight = clientHeight - (clientHeight / scrollHeight);
+          const displacementY = (e.screenY - mouseDownY) * displacementMultiplier;
+          const spaceHeight = isTouch ? scrollHeight : (clientHeight - (clientHeight / scrollHeight));
           const thumbYPosition = (mouseDownScrollTop / scrollHeight * spaceHeight) + displacementY;
           const scrollTop = thumbYPosition / spaceHeight * scrollHeight;
           if (scrollTop > scrollHeight) {
@@ -115,11 +139,12 @@
           } else {
             element[0].scrollTop = scrollTop;
           }
-        } else if (isMouseDownX) {
+        }
+        if (isMouseDownX) {
           const clientWidth = element[0].clientWidth;
           const scrollWidth = element[0].scrollWidth;
-          const displacementX = e.screenX - mouseDownX;
-          const spaceWidth = clientWidth - (clientWidth / scrollWidth);
+          const displacementX = (e.screenX - mouseDownX) * displacementMultiplier;;
+          const spaceWidth = isTouch ? scrollWidth : (clientWidth - (clientWidth / scrollWidth))
           const thumbXPosition = (mouseDownScrollLeft / scrollWidth * spaceWidth) + displacementX;
           const scrollLeft = thumbXPosition / spaceWidth * scrollWidth;
           if (scrollLeft > scrollWidth) {
@@ -128,6 +153,7 @@
             element[0].scrollLeft = scrollLeft;
           }
         }
+
       }
 
       function update(updateX = true, updateY = true) {

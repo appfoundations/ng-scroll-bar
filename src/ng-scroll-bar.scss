@@ -1,6 +1,7 @@
 [ng-scroll-bar] {
   position: relative;
   overflow: hidden!important;
+  touch-action: none;
   /**
   * Scrollbars
   */
