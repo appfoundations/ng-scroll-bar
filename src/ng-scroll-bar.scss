@@ -1,7 +1,12 @@
 [ng-scroll-bar] {
   position: relative;
-  overflow: hidden!important;
   touch-action: none;
+  &.is-not-ie {
+    overflow: inherit;
+  }
+  &.is-ie {
+    overflow: hidden !important;
+  }
   /**
   * Scrollbars
   */
@@ -38,4 +43,20 @@
     right: auto;
     bottom: 0;
   }
+}
+// Overriding the default scrolling for browsers other than ie
+*::-webkit-scrollbar-track
+{
+
+}
+
+*::-webkit-scrollbar
+{
+  width: 8px;
+}
+
+*::-webkit-scrollbar-thumb
+{
+  border-radius: 4px;
+  background: rgba(100, 100, 100, 0.5);
 }

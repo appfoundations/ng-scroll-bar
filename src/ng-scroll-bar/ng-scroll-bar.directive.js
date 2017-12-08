@@ -7,6 +7,11 @@
   function ngScrollBarDirective($window, $timeout) {
 
     function link(scope, element, attrs, controllers) {
+      if (!!attrs.disableIfNotIe && !msieversion()) {
+        element.addClass('is-not-ie');
+        return;
+      }
+      element.addClass('is-ie');
       const MOUSE_MOVE = 'mousemove';
       const MOUSE_UP = 'mouseup';
       const MOUSE_DOWN = 'mousedown';
@@ -58,9 +63,20 @@
         w.off('mouseup', mouseup);
         w.off('mousemove', mousemove);
         w.off('resize', update);
+        element.toggleClass('is-ie', false);
+        element.toggleClass('is-not-ie', false);
       });
 
       $timeout(update, 100);
+
+      function msieversion() {
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)){
+          return true;
+        }
+        return false;
+      }
 
       function mousewheel(e) {
         //Check do we have vertical scroll or not, if no, we should be able to use main page scroll

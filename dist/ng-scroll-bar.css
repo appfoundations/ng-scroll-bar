@@ -1,11 +1,14 @@
 [ng-scroll-bar] {
   position: relative;
-  overflow: hidden !important;
   -ms-touch-action: none;
       touch-action: none;
   /**
   * Scrollbars
   */ }
+  [ng-scroll-bar].is-not-ie {
+    overflow: inherit; }
+  [ng-scroll-bar].is-ie {
+    overflow: hidden !important; }
   [ng-scroll-bar]:hover .ng-scroll-bar-thumb-x,
   [ng-scroll-bar]:hover .ng-scroll-bar-thumb-y {
     opacity: 1; }
@@ -31,3 +34,10 @@
   [ng-scroll-bar] .ng-scroll-bar-thumb-x {
     right: auto;
     bottom: 0; }
+
+*::-webkit-scrollbar {
+  width: 8px; }
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: rgba(100, 100, 100, 0.5); }
