@@ -2,7 +2,7 @@
 angular directive for vertical scrollbar css
 
 
-[![npm version](https://badge.fury.io/js/tng-scroll-bar.svg)](http://badge.fury.io/js/ng-scroll-bar)
+[![npm version](https://badge.fury.io/js/ng-scroll-bar.svg)](http://badge.fury.io/js/ng-scroll-bar)
 
 ## Demo
 
