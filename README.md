@@ -6,7 +6,7 @@ angular directive for vertical scrollbar css
 
 ## Demo
 
-http://ipiz.herokuapp.com/ng-scroll-bar/demo/
+https://ipiz.herokuapp.com/ng-scroll-bar/demo/
 
 ### Dependencies
 might required to use polyfill for *MutationObserver* on older browser
